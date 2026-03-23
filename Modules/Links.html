@@ -1,0 +1,66 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('linksEditorContainer');
+    const addLinkBtn = document.getElementById('addLinkBtn');
+    const saveBtn = document.getElementById('saveLinksBtn');
+
+    // 1. Daten laden (Nutzt die Funktion aus common.js)
+    let data = loadData();
+    let links = data.links || [];
+
+    // 2. Render-Funktion für die Link-Karten
+    function renderLinks() {
+        container.innerHTML = links.map((link, index) => `
+            <div class="link-item card" data-index="${index}" style="margin-bottom: 15px; border-left: 4px solid var(--accent);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <strong style="font-family: 'Bebas Neue'; letter-spacing: 1px;">#${index + 1} RITUAL-LINK</strong>
+                    <button onclick="removeLink(${index})" style="background:none; border:none; color:#7A0C01; cursor:pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <input type="text" placeholder="Titel (z.B. POSSESSED | KÖLN)" value="${link.title}" 
+                       onchange="updateLink(${index}, 'title', this.value)" 
+                       style="width:100%; background:#111; border:1px solid #222; color:white; padding:8px; margin-bottom:5px;">
+                <input type="text" placeholder="URL (https://...)" value="${link.url}" 
+                       onchange="updateLink(${index}, 'url', this.value)"
+                       style="width:100%; background:#111; border:1px solid #222; color:white; padding:8px; margin-bottom:5px;">
+                <input type="text" placeholder="Icon (z.B. fas fa-ticket-alt)" value="${link.icon || ''}" 
+                       onchange="updateLink(${index}, 'icon', this.value)"
+                       style="width:100%; background:#111; border:1px solid #222; color:white; padding:8px;">
+            </div>
+        `).join('');
+    }
+
+    // 3. Funktionen für Events
+    window.updateLink = (index, field, value) => {
+        links[index][field] = value;
+    };
+
+    window.removeLink = (index) => {
+        links.splice(index, 1);
+        renderLinks();
+    };
+
+    addLinkBtn.addEventListener('click', () => {
+        links.push({ title: '', url: '', icon: 'fas fa-link', desc: '' });
+        renderLinks();
+    });
+
+    saveBtn.addEventListener('click', () => {
+        data.links = links;
+        saveData(data); // Speichert in LocalStorage via common.js
+        
+        // Visuelles Feedback (Button-Effekt wie im Screenshot)
+        const originalText = saveBtn.innerHTML;
+        saveBtn.innerHTML = '<i class="fas fa-check"></i> GESPEICHERT';
+        saveBtn.style.background = "#28a745";
+        
+        setTimeout(() => {
+            saveBtn.innerHTML = originalText;
+            saveBtn.style.background = "";
+        }, 2000);
+    });
+
+    // Initiales Rendern
+    renderLinks();
+});
+
