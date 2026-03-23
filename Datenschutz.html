@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATENSCHUTZ | VRDMMT GERMANY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --accent-color: #7A0C01;
+            --bg-black: #000000;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-black);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .legal-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(10, 10, 10, 0.8);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-family: 'Bebas Neue';
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            letter-spacing: 4px;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            text-align: center;
+            opacity: 0.5;
+            font-size: 0.8rem;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-family: 'Bebas Neue';
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 50px 0 20px 0;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-family: 'Bebas Neue';
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin: 25px 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        p { margin-bottom: 15px; font-size: 0.95rem; opacity: 0.85; }
+
+        a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
+        a:hover { opacity: 0.7; }
+
+        /* Inhaltsverzeichnis Grid */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            list-style: none;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+        .index-grid a {
+            font-size: 0.8rem;
+            color: #aaa;
+            display: block;
+            padding: 4px 0;
+        }
+        .index-grid a:hover { color: #fff; transform: translateX(5px); }
+
+        /* Verantwortlicher Box */
+        .responsible-box {
+            background: rgba(122, 12, 1, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--accent-color);
+            margin: 20px 0;
+        }
+
+        /* Rechte Grid */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .right-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .right-card i { color: var(--accent-color); margin-bottom: 10px; font-size: 1.2rem; }
+        .highlight-border { border-color: var(--accent-color); }
+
+        /* Tech-Lists */
+        .tech-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 0.85rem;
+            margin: 15px 0;
+        }
+        .tech-list li::before { content: "› "; color: var(--accent-color); font-weight: bold; }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-family: 'Bebas Neue';
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .legal-container { padding: 20px; }
+            .tech-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="legal-container">
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> ZURÜCK ZUR SEITE</a>
+    
+    <h1>Datenschutz</h1>
+    <p class="subtitle">STAND: 23. MÄRZ 2026 — VRDMMT GERMANY</p>
+
+    <h2 id="mTable">Inhaltsübersicht</h2>
+    <ul class="index-grid">
+        <li><a href="#m716">Präambel</a></li>
+        <li><a href="#m3">Verantwortlicher</a></li>
+        <li><a href="#mOverview">Übersicht der Verarbeitungen</a></li>
+        <li><a href="#m2427">Rechtsgrundlagen</a></li>
+        <li><a href="#m27">Sicherheitsmaßnahmen</a></li>
+        <li><a href="#m24">Internationale Datentransfers</a></li>
+        <li><a href="#m10">Rechte der Personen</a></li>
+        <li><a href="#m317">Geschäftliche Leistungen</a></li>
+        <li><a href="#m134">Technik & Cookies</a></li>
+        <li><a href="#m263">Webanalyse</a></li>
+    </ul>
+
+    <h2 id="m716">Präambel</h2>
+    <p>Wir klären Sie darüber auf, welche Arten Ihrer personenbezogenen Daten wir zu welchen Zwecken verarbeiten. Diese Erklärung gilt für unser Onlineangebot inklusive Social-Media-Profile.</p>
+
+    <h2 id="m3">Verantwortlicher</h2>
+    <div class="responsible-box">
+        <p><strong>Vrdmmt Germany GbR</strong><br>
+        Südweststr. 28, 50126 Bergheim</p>
+        <p><strong>Vertretungsberechtigte Personen:</strong><br>
+        Timmy Lehmann</p>
+        <p><strong>E-Mail:</strong> <a href="mailto:contact@vrdmmt-germany.com">contact@vrdmmt-germany.com</a></p>
+    </div>
+
+    <h2 id="mOverview">Übersicht der Verarbeitungen</h2>
+    <div class="rights-grid">
+        <div class="right-card">
+            <h3>Verarbeitete Daten</h3>
+            <ul class="tech-list" style="grid-template-columns: 1fr;">
+                <li>Bestands- & Kontaktdaten</li>
+                <li>Zahlungs- & Vertragsdaten</li>
+                <li>Inhalts- & Nutzungsdaten</li>
+                <li>Meta- & Protokolldaten</li>
+            </ul>
+        </div>
+        <div class="right-card">
+            <h3>Zwecke</h3>
+            <ul class="tech-list" style="grid-template-columns: 1fr;">
+                <li>Vertragliche Leistungen</li>
+                <li>Sicherheit & Tracking</li>
+                <li>Direktmarketing</li>
+                <li>Organisationsverfahren</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 id="m2427">Maßgebliche Rechtsgrundlagen</h2>
+    <p>Wir verarbeiten Daten nach Art. 6 DSGVO (Einwilligung, Vertragserfüllung, Rechtliche Verpflichtung, Berechtigtes Interesse) sowie nach nationalem Recht (BDSG).</p>
+
+    <h2 id="m27">Sicherheitsmaßnahmen</h2>
+    <p>Wir treffen technische und organisatorische Maßnahmen (TOM), um ein dem Risiko angemessenes Schutzniveau zu gewährleisten. Dazu gehört insbesondere das <strong>IP-Masking</strong> (Kürzung der IP-Adresse vor Speicherung).</p>
+
+    <h2 id="m24">Internationale Datentransfers</h2>
+    <p>Bei Transfers in Drittländer (USA) stützen wir uns auf das <strong>Data Privacy Framework (DPF)</strong> und Standardvertragsklauseln der EU-Kommission für maximale Absicherung.</p>
+
+    <h2 id="m10">Rechte der betroffenen Personen</h2>
+    <div class="rights-grid">
+        <div class="right-card highlight-border">
+            <h3><i class="fas fa-exclamation-triangle"></i> Widerspruch</h3>
+            <p><strong>Sie können der Verarbeitung Ihrer Daten jederzeit aus besonderen Gründen oder bei Direktwerbung widersprechen.</strong></p>
+        </div>
+        <div class="right-card">
+            <h3><i class="fas fa-search"></i> Auskunft</h3>
+            <p>Sie haben das Recht auf Bestätigung und Kopie Ihrer verarbeiteten Daten.</p>
+        </div>
+        <div class="right-card">
+            <h3><i class="fas fa-trash"></i> Löschung</h3>
+            <p>Sie können die unverzügliche Löschung oder Einschränkung Ihrer Daten fordern.</p>
+        </div>
+    </div>
+
+    <h2 id="m317">Geschäftliche Leistungen</h2>
+    <p>Wir verarbeiten Daten unserer Vertragspartner zur Abwicklung von Käufen, Gewährleistung und Kommunikation. Daten werden gelöscht, sobald gesetzliche Aufbewahrungspflichten (Handels-/Steuerrecht) enden.</p>
+
+    <h2 id="m134">Technik & Cookies</h2>
+    <h3>Server-Log-Files</h3>
+    <p>Unser Provider erhebt automatisch Daten (Browsertyp, IP, Uhrzeit), um den fehlerfreien Betrieb sicherzustellen (Art. 6 Abs. 1 lit. f DSGVO).</p>
+    <ul class="tech-list">
+        <li>Browsertyp/Version</li>
+        <li>Betriebssystem</li>
+        <li>Referrer URL</li>
+        <li>IP-Adresse</li>
+    </ul>
+
+    <h3>Cookies</h3>
+    <p>Wir nutzen Session-Cookies zur Nutzerfreundlichkeit. Diese werden nach dem Schließen des Browsers gelöscht.</p>
+
+    <h2 id="m263">Webanalyse & Social Media</h2>
+    <p>Wir nutzen <strong>Google Analytics</strong> (Google Ireland Ltd.) zur Reichweitenmessung nur bei Einwilligung. Die IP-Anonymisierung ist aktiviert.</p>
+    <p>Unsere Social Media Links (Instagram, TikTok) nutzen eine <strong>2-Klick-Lösung</strong>: Daten fließen erst, wenn Sie den Link aktiv anklicken.</p>
+
+    <div style="text-align: center; margin-top: 60px; padding: 20px; border-top: 1px solid var(--border-color);">
+        <p style="font-family: 'Bebas Neue'; letter-spacing: 2px; color: var(--accent-color);">VRDMMT GERMANY — UNCOMPROMISING SINCE 2022</p>
+    </div>
+</div>
+
+</body>
+</html>
+
