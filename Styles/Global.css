@@ -1,0 +1,43 @@
+/* Grundlegende Styles für alle Seiten */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #eee;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Globale CSS-Variablen (werden dynamisch überschrieben) */
+:root {
+    --admin-red: #7A0C01;
+    --admin-bg: #0a0a0a;
+    --admin-card: #121212;
+    --admin-border: #2a2a2a;
+    --admin-text: #eee;
+    
+    /* Öffentliche Seite Variablen */
+    --accent-color: #7A0C01;
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --link-hover-color: #7A0C01;
+    --card-bg: #0f0f0f;
+    --card-border-width: 1px;
+    --card-border-color: #7A0C01;
+    --card-opacity: 0.85;
+    --button-radius: 16px;
+    --title-size: 56px;
+    --text-size: 14px;
+    --title-font: 'Bebas Neue';
+    --body-font: 'Inter';
+    --glass-blur: 0px;
+}
