@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VRDMMT | CONTROL CENTER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/admin.css">
+    <style>
+        #admin-lock {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 99999; display: flex;
+            align-items: center; justify-content: center; flex-direction: column;
+            transition: opacity 0.5s ease;
+        }
+        .lock-input {
+            background: #111; border: 1px solid var(--admin-red);
+            color: white; padding: 15px; font-family: 'Bebas Neue';
+            font-size: 1.5rem; text-align: center; border-radius: 8px;
+            outline: none; margin-bottom: 15px; width: 280px; letter-spacing: 3px;
+        }
+        .lock-btn {
+            background: var(--admin-red); color: white; border: none;
+            padding: 12px 40px; font-family: 'Bebas Neue'; cursor: pointer;
+            letter-spacing: 2px; border-radius: 5px; font-size: 1.2rem;
+        }
+        .tab-pane { display: none; animation: fadeIn 0.3s ease; }
+        .tab-pane.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+        
+        .design-section { margin-bottom: 35px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px; }
+        .design-section h3 { font-family: 'Bebas Neue'; font-size: 1.6rem; margin-bottom: 20px; color: var(--admin-red); letter-spacing: 2px; text-transform: uppercase; }
+        
+        #livePreview { 
+            transition: all 0.4s; overflow: hidden; background: #0a0a0a; 
+            border: 1px solid #2a2a2a; position: relative; min-height: 300px; 
+            border-radius: 20px; text-align: center; margin-bottom: 25px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        
+        .live-avatar { width: 90px; height: 90px; border-radius: 50%; margin-bottom: 15px; border: 2px solid var(--admin-red); background-size: cover; background-position: center; }
+        .preview-socials { display: flex; gap: 10px; margin: 10px 0; font-size: 1.2rem; color: var(--admin-red); }
+        
+        .social-toggle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 0.75rem; opacity: 0.6; margin-bottom: 5px; text-transform: uppercase; }
+        
+        select.admin-input, .admin-modal-input {
+            background: #111; border: 1px solid #333; color: white; padding: 10px; border-radius: 8px; width: 100%; margin-bottom: 10px;
+        }
+
+        .admin-modal {
+            display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: #111; border: 1px solid var(--admin-red); padding: 30px; border-radius: 15px; width: 90%; max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ritualModal" class="admin-modal">
+        <div class="modal-content">
+            <h2 style="font-family: 'Bebas Neue'; color: var(--admin-red); margin-bottom: 20px;">NEUES RITUAL</h2>
+            <label style="font-size: 0.7rem; opacity: 0.5;">NAME DES RITUALS</label>
+            <input type="text" id="newRitualName" class="admin-modal-input" placeholder="z.B. Soundcloud Mix">
+            <label style="font-size: 0.7rem; opacity: 0.5;">ZIEL-URL</label>
+            <input type="url" id="newRitualUrl" class="admin-modal-input" placeholder="https://...">
+            <label style="font-size: 0.7rem; opacity: 0.5;">TYP</label>
+            <select id="newRitualType" class="admin-modal-input">
+                <option value="link">Standard Link</option>
+                <option value="product">Produkt / Shop</option>
+                <option value="video">Video / Stream</option>
+            </select>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="saveNewRitual()" style="flex: 2;">SPEICHERN</button>
+                <button class="btn btn-secondary" onclick="closeModal()" style="flex: 1;">ABBRECHEN</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-lock">
+        <div style="font-family: 'Bebas Neue'; font-size: 3rem; color: white; margin-bottom: 10px;">VRDMMT</div>
+        <div style="color: var(--admin-red); letter-spacing: 5px; margin-bottom: 30px; font-size: 0.8rem;">SECURED INTERFACE</div>
+        <input type="password" id="adminPass" class="lock-input" placeholder="••••••••">
+        <button class="lock-btn" onclick="checkPass()">ACCESS</button>
+    </div>
+
+    <div class="dashboard-header">
+        <h1><i class="fas fa-terminal"></i> VRDMMT CONTROL</h1>
+        <div class="version-badge">v6.6 FINAL UNLOCKED</div>
+    </div>
+
+    <div class="admin-nav">
+        <button class="nav-btn active" data-tab="links">LINKS</button>
+        <button class="nav-btn" data-tab="collections">GROUPS</button>
+        <button class="nav-btn" data-tab="shop">SHOP</button>
+        <button class="nav-btn" data-tab="design">DESIGN</button>
+        <button class="nav-btn" data-tab="settings">SYSTEM</button>
+    </div>
+
+    <div id="links-tab" class="tab-pane active">
+        <div class="card">
+            <div class="card-title">Ritual Management</div>
+            <div id="linksEditorContainer"></div>
+            <button class="btn btn-primary" onclick="openModal()" style="width:100%; margin-top:20px;">+ NEUES RITUAL HINZUFÜGEN</button>
+        </div>
+    </div>
+
+    <div id="collections-tab" class="tab-pane">
+        <div class="card">
+            <div class="card-title">Sammlungen & Kategorien</div>
+            <div id="collectionsContainer"></div>
+            <button class="btn btn-primary" id="addCollectionBtn" style="width:100%; margin-top:20px;">+ NEUE SAMMLUNG ERSTELLEN</button>
+        </div>
+    </div>
+
+    <div id="shop-tab" class="tab-pane">
+        <div class="card">
+            <div class="card-title">Shop & Inventory</div>
+            <div id="productList"></div>
+            <div style="background: rgba(122, 12, 1, 0.1); padding: 15px; border-radius: 10px; margin-top: 20px; border-left: 4px solid var(--admin-red);">
+                <i class="fas fa-info-circle"></i> Info: Produkte werden automatisch aus allen Links generiert, die als Typ "Produkt" markiert sind.
+            </div>
+        </div>
+    </div>
+
+    <div id="design-tab" class="tab-pane">
+        <div class="card">
+            <div id="livePreview">
+                <div class="live-avatar" id="liveAvatarPreview"></div>
+                <div id="previewTitle" style="font-family: 'Bebas Neue'; font-size: 2.2rem; letter-spacing: 2px;">VRDMMT</div>
+                <div id="previewSub" style="font-size: 0.85rem; opacity: 0.6; letter-spacing: 1px;">UNCOMPROMISING TECHNO</div>
+            </div>
+
+            <div class="design-section">
+                <h3>Identität & Header</h3>
+                <div class="img-selector" id="avatarPickerContainer">
+                    <label class="upload-trigger"><i class="fas fa-plus"></i><input type="file" id="avatarUpload" hidden accept="image/*"></label>
+                </div>
+                <div class="design-row" style="margin-top:20px;">
+                    <div class="design-col"><label>Seitentitel</label><input type="text" id="siteTitle"></div>
+                    <div class="design-col"><label>Subline (Slogan)</label><input type="text" id="siteSubline"></div>
+                </div>
+            </div>
+
+            <div class="design-section">
+                <h3>Social Rituals (Icons)</h3>
+                <label class="switch-container" style="margin-bottom: 20px; font-weight: bold;">
+                    <input type="checkbox" id="socialShowSection"> GESAMTE SEKTION ANZEIGEN
+                </label>
+                
+                <div class="input-group">
+                    <label>Position der Icons</label>
+                    <select id="socialPosition" class="admin-input">
+                        <option value="top">OBEN (Unter dem Seitentitel)</option>
+                        <option value="bottom">UNTEN (Über dem Footer)</option>
+                    </select>
+                </div>
+
+                <div class="social-toggle-grid">
+                    <div class="input-group">
+                        <label><input type="checkbox" id="social_tiktok_show"> TikTok</label>
+                        <input type="text" id="social_tiktok_url" placeholder="URL">
+                    </div>
+                    <div class="input-group">
+                        <label><input type="checkbox" id="social_instagram_show"> Instagram</label>
+                        <input type="text" id="social_instagram_url" placeholder="URL">
+                    </div>
+                    <div class="input-group">
+                        <label><input type="checkbox" id="social_facebook_show"> Facebook</label>
+                        <input type="text" id="social_facebook_url" placeholder="URL">
+                    </div>
+                    <div class="input-group">
+                        <label><input type="checkbox" id="social_email_show"> E-Mail</label>
+                        <input type="text" id="social_email_url" placeholder="E-Mail Adresse">
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-section">
+                <h3>Farben & Visuals</h3>
+                <div class="design-row">
+                    <div class="design-col"><label>Akzentfarbe</label><input type="color" id="accentColor"></div>
+                    <div class="design-col"><label>Hintergrundfarbe</label><input type="color" id="bgColor"></div>
+                </div>
+                <div class="design-row" style="margin-top:15px;">
+                    <div class="design-col"><label>Ecken-Radius (px)</label><input type="number" id="buttonRadius" min="0" max="40"></div>
+                    <div class="design-col"><label>Card Deckkraft (%)</label><input type="number" id="cardOpacity" min="0" max="100"></div>
+                </div>
+                <label class="switch-container" style="margin-top:20px;">
+                    <input type="checkbox" id="particlesEnabled"> Partikel-Hintergrund aktivieren
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-tab" class="tab-pane">
+        <div class="card">
+            <div class="card-title">System & Datensicherung</div>
+            <div class="design-section">
+                <h3>Texte</h3>
+                <div class="input-group">
+                    <label>Footer Text</label>
+                    <input type="text" id="footerText">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="exportRitualData()" style="width:100%; margin-bottom:15px;">
+                <i class="fas fa-download"></i> BACKUP EXPORTIEREN (JSON)
+            </button>
+            <button class="btn btn-secondary" onclick="factoryReset()" style="width:100%; background: #333;">
+                <i class="fas fa-undo"></i> SYSTEM ZURÜCKSETZEN
+            </button>
+        </div>
+    </div>
+
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/links.js"></script>
+    <script src="../scripts/collections.js"></script>
+    <script src="../scripts/shop.js"></script>
+    <script src="../scripts/design.js"></script>
+    <script>
+        function checkPass() {
+            if(document.getElementById('adminPass').value === "VRDMMT2026") {
+                document.getElementById('admin-lock').style.display = 'none';
+                sessionStorage.setItem('vrd_auth', 'true');
+            } else { alert("ZUGRIFF VERWEIGERT."); }
+        }
+        if(sessionStorage.getItem('vrd_auth') === 'true') document.getElementById('admin-lock').style.display = 'none';
+
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.nav-btn, .tab-pane').forEach(el => el.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab + '-tab').classList.add('active');
+            };
+        });
+
+        function openModal() {
+            document.getElementById('ritualModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('ritualModal').style.display = 'none';
+        }
+        function saveNewRitual() {
+            const name = document.getElementById('newRitualName').value;
+            const url = document.getElementById('newRitualUrl').value;
+            const type = document.getElementById('newRitualType').value;
+
+            if(name && url) {
+                if(window.addRitualLink) {
+                    window.addRitualLink(name, url, type);
+                    closeModal();
+                    document.getElementById('newRitualName').value = "";
+                    document.getElementById('newRitualUrl').value = "";
+                } else {
+                    alert("System-Fehler: links.js nicht geladen.");
+                }
+            } else {
+                alert("Bitte Name und URL eingeben.");
+            }
+        }
+    </script>
+</body>
+</html>
+
