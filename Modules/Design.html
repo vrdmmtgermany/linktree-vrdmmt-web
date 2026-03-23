@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-title"><i class="fas fa-palette"></i> Design Einstellungen</div>
+    <div class="input-group"><label>Akzentfarbe (Hex)</label><input type="text" id="accentColor" placeholder="#7A0C01"></div>
+    <div class="input-group"><label>Hintergrundfarbe</label><input type="text" id="bgColor" placeholder="#000000"></div>
+    <div class="input-group"><label>Textfarbe</label><input type="text" id="textColor" placeholder="#ffffff"></div>
+    <div class="input-group"><label>Avatar URL</label><input type="text" id="avatarUrl" placeholder="/Images/vrdmmtpb.png"></div>
+    <div class="input-group"><label>Titel (Name)</label><input type="text" id="siteTitle"></div>
+    <div class="input-group"><label>Unterzeile</label><input type="text" id="siteSubline"></div>
+    <div class="input-group"><label>Footer Text</label><input type="text" id="footerText"></div>
+    <div class="input-group"><label>Partikel-Effekt</label><input type="checkbox" id="particlesEnabled"></div>
+    <div class="input-group"><label>Schriftart Titel (Google Font)</label><input type="text" id="titleFont" placeholder="Bebas Neue"></div>
+    <div class="input-group"><label>Schriftart Text (Google Font)</label><input type="text" id="bodyFont" placeholder="Inter"></div>
+    <div class="flex-buttons"><button class="btn btn-primary" id="saveDesignBtn">Design speichern</button><button class="btn btn-secondary" id="resetDesignBtn">Standard</button></div>
+    <hr>
+    <div class="card-title"><i class="fas fa-eye"></i> Live-Vorschau</div>
+    <div id="livePreview" style="background:#000; padding:15px; border-radius:16px; text-align:center;">
+        <div style="width:80px; height:80px; background:#2a2a2a; border-radius:50%; margin:0 auto 12px;"></div>
+        <div id="previewTitle" style="font-family:'Bebas Neue'; font-size:1.8rem;">VRDMMT GERMANY</div>
+        <div id="previewSub" style="font-size:0.7rem;">Uncompromising Techno Rituals</div>
+    </div>
+</div>
+
+<script src="../scripts/common.js"></script>
+<script src="../scripts/design.js"></script>
