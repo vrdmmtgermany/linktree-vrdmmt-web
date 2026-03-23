@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>VRDMMT GERMANY | Official Rituals</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88WK076V7S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-88WK076V7S');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <style>
+        :root {
+            --accent-color: #7A0C01;
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --card-opacity: 0.85;
+            --button-radius: 16px;
+        }
+
+        body {
+            background: var(--bg-color);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .share-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center; justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover { background: var(--accent-color); transform: rotate(15deg); }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            margin: 0 auto 25px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(122, 12, 1, 0.4);
+            background: #111;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        h1 {
+            font-family: 'Bebas Neue';
+            font-size: 56px;
+            letter-spacing: 4px;
+            margin: 0;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+
+        .sub {
+            font-size: 13px;
+            opacity: 0.6;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            margin-top: 8px;
+        }
+
+        /* Social Row Design */
+        .social-row { 
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            margin: 20px 0 35px 0; 
+            min-height: 30px;
+        }
+        .social-row a { 
+            color: var(--text-color); 
+            font-size: 1.6rem; 
+            transition: 0.3s; 
+            opacity: 0.8; 
+        }
+        .social-row a:hover { 
+            color: var(--accent-color); 
+            transform: translateY(-3px); 
+            opacity: 1; 
+        }
+
+        .collection { margin-bottom: 45px; text-align: left; }
+        .collection-title {
+            font-family: 'Bebas Neue'; 
+            font-size: 1.8rem; 
+            letter-spacing: 2px;
+            margin-bottom: 18px; 
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px; 
+            color: var(--text-color);
+        }
+
+        .card {
+            background: rgba(15, 15, 15, var(--card-opacity));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 18px 22px;
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex; 
+            align-items: center;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: var(--button-radius);
+            margin-bottom: 14px;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            background: rgba(122, 12, 1, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card i { font-size: 1.4rem; width: 45px; color: var(--accent-color); text-align: center; }
+        .card .info { flex: 1; text-align: left; }
+        .card h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; margin: 0; letter-spacing: 1px; }
+        .card p { font-size: 0.85rem; opacity: 0.5; margin: 4px 0 0; line-height: 1.4; }
+        
+        footer { margin-top: 80px; padding-bottom: 40px; font-family: 'Bebas Neue'; }
+        .footer-brand { font-size: 0.9rem; opacity: 0.3; letter-spacing: 4px; margin-bottom: 15px; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.75rem; font-family: 'Inter'; }
+        .footer-links a { color: var(--text-color); text-decoration: none; opacity: 0.5; transition: 0.3s; }
+        .footer-links a:hover { opacity: 1; color: var(--accent-color); }
+
+        @media (max-width: 480px) { h1 { font-size: 42px; } .avatar { width: 115px; height: 115px; } }
+    </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+<button class="share-btn" onclick="shareRitual()"><i class="fas fa-share-nodes"></i></button>
+
+<div class="content">
+    <div class="avatar"><img id="avatarImg" src="" alt="VRDMMT"></div>
+    <h1 id="siteTitle">VRDMMT</h1>
+    <div class="sub" id="siteSubline">UNCOMPROMISING TECHNO RITUALS</div>
+
+    <div id="socialTop" class="social-row"></div>
+
+    <div id="contentContainer"></div>
+
+    <div id="socialBottom" class="social-row"></div>
+
+    <footer>
+        <div class="footer-brand" id="footerText">EST. 2022 — VRDMMT GERMANY</div>
+        <div class="footer-links">
+            <a href="impressum.html">IMPRESSUM</a>
+            <a href="datenschutz.html">DATENSCHUTZ</a>
+        </div>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="scripts/common.js"></script>
+<script>
+    function initPublicPage() {
+        const data = loadData();
+        const c = data.config;
+        const root = document.documentElement;
+        
+        // Vollständiges Design-Mapping
+        root.style.setProperty('--accent-color', c.accentColor || '#7A0C01');
+        root.style.setProperty('--bg-color', c.bgColor || '#000000');
+        root.style.setProperty('--button-radius', (c.buttonRadius || 16) + 'px');
+        root.style.setProperty('--card-opacity', (c.cardOpacity / 100) || 0.85);
+
+        // Header
+        const imgEl = document.getElementById('avatarImg');
+        imgEl.src = c.avatarUrl || '/Images/vrdmmtpb.png';
+        imgEl.onerror = () => { imgEl.src = '/Images/vrdmmtpb.png'; };
+
+        document.getElementById('siteTitle').innerText = c.siteTitle || 'VRDMMT';
+        document.getElementById('siteSubline').innerText = c.siteSubline || '';
+        document.getElementById('footerText').innerText = c.footerText || 'EST. 2022 — VRDMMT GERMANY';
+
+        // Social Media Logik (Zuschaltbar & Positionierbar)
+        renderSocialRituals(c);
+
+        // Links & Sammlungen Rendering
+        const container = document.getElementById('contentContainer');
+        let mainHtml = '';
+
+        if (data.collections && data.collections.length > 0) {
+            data.collections.forEach(col => {
+                const colLinks = data.links.filter(l => l.collectionId === col.id);
+                if (colLinks.length > 0) {
+                    mainHtml += `
+                        <div class="collection">
+                            <div class="collection-title">${escapeHtml(col.name)}</div>
+                            <div class="collection-links">
+                                ${colLinks.map(l => createCard(l)).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        container.innerHTML = mainHtml || '<p style="opacity:0.2; margin-top:50px;">NO RITUALS FOUND.</p>';
+
+        // Partikel Effekt
+        if (c.particlesEnabled !== false && typeof particlesJS !== 'undefined') {
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: 40 },
+                    color: { value: c.accentColor || '#7A0C01' },
+                    opacity: { value: 0.2 },
+                    size: { value: 2 },
+                    line_linked: { enable: true, distance: 150, color: c.accentColor || '#7A0C01', opacity: 0.1, width: 1 },
+                    move: { enable: true, speed: 0.8 }
+                }
+            });
+        }
+    }
+
+    function renderSocialRituals(c) {
+        // Falls die gesamte Sektion aus ist -> Abbruch
+        if (c.socialShowSection === false) return;
+
+        const platforms = [
+            { id: 'tiktok', icon: 'fab fa-tiktok' },
+            { id: 'instagram', icon: 'fab fa-instagram' },
+            { id: 'facebook', icon: 'fab fa-facebook' },
+            { id: 'email', icon: 'fas fa-envelope', isEmail: true }
+        ];
+
+        let html = '';
+        platforms.forEach(p => {
+            const isVisible = c[`social_${p.id}_show`];
+            const url = c[`social_${p.id}_url`];
+            
+            if (isVisible && url) {
+                const finalUrl = p.isEmail ? `mailto:${url}` : url;
+                html += `<a href="${finalUrl}" target="_blank" title="${p.id}"><i class="${p.icon}"></i></a>`;
+            }
+        });
+
+        // Bestimme Ziel (Top oder Bottom)
+        const position = c.socialPosition || 'top';
+        const targetId = position === 'bottom' ? 'socialBottom' : 'socialTop';
+        document.getElementById(targetId).innerHTML = html;
+    }
+
+    function createCard(link) {
+        let icon = 'fas fa-bolt';
+        const url = link.url ? link.url.toLowerCase() : '';
+        
+        if (url.includes('youtube.com') || url.includes('youtu.be')) icon = 'fab fa-youtube';
+        else if (url.includes('instagram.com')) icon = 'fab fa-instagram';
+        else if (url.includes('soundcloud.com')) icon = 'fab fa-soundcloud';
+        else if (url.includes('spotify.com')) icon = 'fab fa-spotify';
+        else if (link.type === 'product') icon = 'fas fa-shopping-cart';
+
+        return `
+            <a href="${link.url}" class="card" target="_blank">
+                <i class="${icon}"></i>
+                <div class="info">
+                    <h3>${escapeHtml(link.title)}</h3>
+                    ${link.desc ? `<p>${escapeHtml(link.desc)}</p>` : ''}
+                </div>
+                <i class="fas fa-chevron-right" style="opacity:0.2; font-size:0.8rem;"></i>
+            </a>
+        `;
+    }
+
+    async function shareRitual() {
+        if (navigator.share) {
+            try {
+                await navigator.share({ title: 'VRDMMT', url: window.location.href });
+            } catch (err) { console.log("Share failed"); }
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert("LINK COPIED TO CLIPBOARD.");
+        }
+    }
+
+    initPublicPage();
+</script>
+</body>
+</html>
+
